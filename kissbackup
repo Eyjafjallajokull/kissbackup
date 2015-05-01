@@ -1,0 +1,8 @@
+#!/usr/bin/python
+from lib.core import config, Kissbackup
+import logging
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s ; %(levelname)s ; %(message)s')
+
+kissbackup = Kissbackup()
+kissbackup.process_tasks()

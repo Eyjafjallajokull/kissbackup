@@ -1,0 +1,25 @@
+backup_dir: /var/backups
+
+tasks:
+  postgres:
+    prepare: sudo -u postgres pg_dump ... > %(prepared)s.sql
+    compress: tar cvzf %(compressed)s %(prepared)s.sql
+    compress_ext: .tar.gz
+    upload: 1
+    cleanup: rm %(prepared)s.sql
+    keep_archives: 5
+  media:
+    compress: tar cvf %(compressed)s ...
+    compress_ext: .tar
+    upload: 1
+    keep_archives: 0
+
+backends:
+  hubic:
+    username: ...
+    password: ...
+    client_id: ...
+    client_secret: ...
+    redirect_uri: http://localhost/
+    container: default
+    remote_path: .../
